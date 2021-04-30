@@ -17,7 +17,7 @@ class JsonPokemonStorageTest {
     @Test
     void get_pokemonContainsAllData() {
         Pokemon bulbasaur = jsonPokemonStorage.get().get(0);
-        assertThat(bulbasaur.id()).isEqualTo("1");
-        assertThat(bulbasaur.name()).isEqualTo("bulbasaur");
+        assertThat(bulbasaur.getId()).isEqualTo("1");
+        assertThat(bulbasaur.getName()).isEqualTo("bulbasaur");
     }
 }
