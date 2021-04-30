@@ -4,13 +4,15 @@ plugins {
 	id 'java'
 }
 
-sourceCompatibility = '11'
+sourceCompatibility = "16"
+targetCompatibility = JavaVersion.VERSION_16
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	implementation 'org.json:json:20171018'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
