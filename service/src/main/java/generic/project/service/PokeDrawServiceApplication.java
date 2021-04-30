@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class GenericServiceApplication {
+public class PokeDrawServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GenericServiceApplication.class, args);
+		SpringApplication.run(PokeDrawServiceApplication.class, args);
 	}
 
 	@Bean
