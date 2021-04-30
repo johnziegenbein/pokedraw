@@ -1,4 +1,4 @@
-package generic.project.service;
+package pokedraw.project.service;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

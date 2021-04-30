@@ -1,4 +1,4 @@
-package generic.project.service;
+package pokedraw.project.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

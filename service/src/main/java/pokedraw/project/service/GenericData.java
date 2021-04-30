@@ -1,4 +1,4 @@
-package generic.project.service;
+package pokedraw.project.service;
 
 public class GenericData {
     private final long id;
