@@ -11,13 +11,14 @@ class JsonPokemonStorageTest {
 
     @Test
     void get_contains3Pokemon() {
-        assertThat(jsonPokemonStorage.get()).hasSize(3);
+        assertThat(jsonPokemonStorage.get()).hasSize(4);
     }
 
     @Test
     void get_pokemonContainsAllData() {
         Pokemon bulbasaur = jsonPokemonStorage.get().get(0);
-        assertThat(bulbasaur.getId()).isEqualTo("1");
-        assertThat(bulbasaur.getName()).isEqualTo("bulbasaur");
+        assertThat(bulbasaur.getId()).isEqualTo("001");
+        assertThat(bulbasaur.getName()).isEqualTo("Bulbasaur");
+        assertThat(bulbasaur.isDrawn()).isEqualTo(false);
     }
 }

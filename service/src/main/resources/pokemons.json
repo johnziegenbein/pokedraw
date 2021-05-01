@@ -2,19 +2,23 @@
   "pokemons": [
     {
       "id": "001",
-      "name": "Bulbasaur"
+      "name": "Bulbasaur",
+      "drawn": false
     },
     {
       "id": "002",
-      "name": "Ivysaur"
+      "name": "Ivysaur",
+      "drawn": false
     },
     {
       "id": "003",
-      "name": "Venusaur"
+      "name": "Venusaur",
+      "drawn": false
     },
     {
       "id": "004",
-      "name": "Charmander"
+      "name": "Charmander",
+      "drawn": false
     }
   ]
 }

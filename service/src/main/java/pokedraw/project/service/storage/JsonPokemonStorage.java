@@ -15,7 +15,6 @@ public class JsonPokemonStorage implements PokemonStorage {
 
     private static final String POKEMON_FILE = "pokemons.json";
 
-
     @Override
     public List<Pokemon> get() {
         JSONArray pokemonArray = getPokemonJsonArray();
@@ -23,7 +22,8 @@ public class JsonPokemonStorage implements PokemonStorage {
         for (int i = 0; i < pokemonArray.length(); i++) {
             Pokemon pokemon = new Pokemon(
                     pokemonArray.getJSONObject(i).get("id").toString(),
-                    pokemonArray.getJSONObject(i).get("name").toString()
+                    pokemonArray.getJSONObject(i).get("name").toString(),
+                    (boolean) pokemonArray.getJSONObject(i).get("drawn")
             );
             pokemonList.add(pokemon);
         }
