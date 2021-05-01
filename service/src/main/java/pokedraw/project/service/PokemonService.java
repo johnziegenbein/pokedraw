@@ -12,4 +12,8 @@ public class PokemonService {
     public List<Pokemon> getAll() {
         return pokemonStorage.get();
     }
+
+    public Pokemon replacePokemon(Pokemon pokemon) {
+        return pokemonStorage.replacePokemon(pokemon);
+    }
 }

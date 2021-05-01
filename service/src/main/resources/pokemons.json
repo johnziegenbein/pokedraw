@@ -1,24 +1,22 @@
-{
-  "pokemons": [
+{"pokemons": [
     {
-      "id": "001",
-      "name": "Bulbasaur",
-      "drawn": false
+        "name": "Bulbasaur",
+        "id": "001",
+        "drawn": false
     },
     {
-      "id": "002",
-      "name": "Ivysaur",
-      "drawn": false
+        "name": "Ivysaur",
+        "id": "002",
+        "drawn": true
     },
     {
-      "id": "003",
-      "name": "Venusaur",
-      "drawn": true
+        "name": "Venusaur",
+        "id": "003",
+        "drawn": true
     },
     {
-      "id": "004",
-      "name": "Charmander",
-      "drawn": true
+        "name": "Charmander",
+        "id": "004",
+        "drawn": true
     }
-  ]
-}
+]}

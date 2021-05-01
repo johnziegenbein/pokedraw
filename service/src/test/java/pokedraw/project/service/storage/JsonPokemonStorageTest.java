@@ -21,4 +21,11 @@ class JsonPokemonStorageTest {
         assertThat(bulbasaur.getName()).isEqualTo("Bulbasaur");
         assertThat(bulbasaur.isDrawn()).isEqualTo(false);
     }
+
+    @Test
+    void set_ivysaur_toNotDrawn() {
+        Pokemon ivysaur = new Pokemon("002", "Ivysaur", true);
+        jsonPokemonStorage.replacePokemon(ivysaur);
+        assertThat(jsonPokemonStorage.get().get(1)).isEqualTo(ivysaur);
+    }
 }

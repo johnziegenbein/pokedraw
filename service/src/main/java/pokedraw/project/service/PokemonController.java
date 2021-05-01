@@ -1,7 +1,6 @@
 package pokedraw.project.service;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pokedraw.project.service.data.Pokemon;
 
 import java.util.List;
@@ -13,5 +12,10 @@ public class PokemonController {
     @GetMapping("/pokemon")
     public List<Pokemon> getPokemon() {
         return pokemonService.getAll();
+    }
+
+    @PutMapping("/pokemon")
+    public Pokemon replacePokemon(@RequestBody Pokemon pokemon) {
+        return pokemonService.replacePokemon(pokemon);
     }
 }

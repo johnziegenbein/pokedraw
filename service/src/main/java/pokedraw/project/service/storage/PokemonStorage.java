@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PokemonStorage {
     public List<Pokemon> get();
+
+    public Pokemon replacePokemon(Pokemon pokemon);
 }
