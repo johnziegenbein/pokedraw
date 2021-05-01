@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class GenericService {
+export class PokemonService {
 
   private SERVER_URL = 'http://localhost:8080';
   private GENERIC_PATH = '/pokemon';

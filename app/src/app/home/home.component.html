@@ -1,5 +1,3 @@
-<div style="text-align:left">
-  <app-pokemon-card [name]="'Bulbasaur'" [id]="'001'" class="inline-block"></app-pokemon-card>
-  <app-pokemon-card [name]="'Ivysaur'" [id]="'002'" class="inline-block"></app-pokemon-card>
-  <app-pokemon-card [name]="'Venusaur'" [id]="'003'" class="inline-block"></app-pokemon-card>
+<div *ngFor="let map of pokemonData" class="inline-block">
+  <app-pokemon-card [name]="map['name']" [id]="map['id']" ></app-pokemon-card>
 </div>

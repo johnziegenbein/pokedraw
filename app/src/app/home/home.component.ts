@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GenericService} from '../service/generic.service';
+import {PokemonService} from '../service/pokemon.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
 
   pokemonData;
 
-  constructor(private pokemonService: GenericService) { }
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
     this.pokemonService.getAllPokemon().subscribe((data: any[]) => {
