@@ -17,7 +17,7 @@ public class JsonPokemonStorage implements PokemonStorage {
 
     @Override
     public List<Pokemon> get() {
-        JSONArray pokemonArray = getPokemonJsonArray();
+        JSONArray pokemonArray = getPokemonJsonObject().getJSONArray("pokemons");
         List<Pokemon> pokemonList = new ArrayList<>();
         for (int i = 0; i < pokemonArray.length(); i++) {
             Pokemon pokemon = new Pokemon(
@@ -30,14 +30,13 @@ public class JsonPokemonStorage implements PokemonStorage {
         return pokemonList;
     }
 
-    private JSONArray getPokemonJsonArray() {
+    private JSONObject getPokemonJsonObject() {
         InputStream pokemonInputStream = getClass().getClassLoader().getResourceAsStream(POKEMON_FILE);
         String pokemonString =
                 new BufferedReader(new InputStreamReader(pokemonInputStream))
                         .lines()
                         .collect(Collectors.joining("\n"));
         System.out.println(pokemonString);
-        JSONObject obj = new JSONObject(pokemonString);
-        return obj.getJSONArray("pokemons");
+        return new JSONObject(pokemonString);
     }
 }
