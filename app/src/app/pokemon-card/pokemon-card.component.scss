@@ -1,0 +1,24 @@
+.pokemon-card {
+  max-width: 163px;
+  padding-bottom: 0;
+  padding-top: 0;
+  margin: 0;
+}
+
+.mat-card-title {
+  padding: 0;
+  margin: -15%;
+}
+
+.mat-card-subtitle {
+  padding: 0;
+  margin: -10%  ;
+}
+
+.mat-button-toggle {
+  padding: 5%;
+}
+
+.mat-button-toggle-checked {
+  background-color: green;
+}

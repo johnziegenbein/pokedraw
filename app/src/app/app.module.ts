@@ -15,12 +15,16 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationBarComponent,
-    HomeComponent
+    HomeComponent,
+    PokemonCardComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,8 @@ import {FormsModule} from '@angular/forms';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatCardModule,
+    MatButtonToggleModule,
     HttpClientModule
   ],
   providers: [],
