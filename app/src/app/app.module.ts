@@ -17,7 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import {MatCardModule} from '@angular/material/card';
-import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     MatListModule,
     MatCardModule,
     MatButtonToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
