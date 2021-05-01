@@ -8,14 +8,14 @@ import {GenericService} from '../service/generic.service';
 })
 export class HomeComponent implements OnInit {
 
-  genericInfo = '';
+  pokemonData;
 
-  constructor(private genericService: GenericService) { }
+  constructor(private pokemonService: GenericService) { }
 
   ngOnInit() {
-    this.genericService.getGenericInfo().subscribe((data: any[]) => {
+    this.pokemonService.getAllPokemon().subscribe((data: any[]) => {
       console.log(data);
-      this.genericInfo = data['content'];
+      this.pokemonData = data;
     });
   }
 

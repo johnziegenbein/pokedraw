@@ -7,11 +7,11 @@ import {HttpClient} from '@angular/common/http';
 export class GenericService {
 
   private SERVER_URL = 'http://localhost:8080';
-  private GENERIC_PATH = '/generic';
+  private GENERIC_PATH = '/pokemon';
 
   constructor(private http: HttpClient) { }
 
-  public getGenericInfo() {
+  public getAllPokemon() {
     return this.http.get(this.SERVER_URL + this.GENERIC_PATH);
   }
 }
