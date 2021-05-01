@@ -13,12 +13,12 @@
     {
       "id": "003",
       "name": "Venusaur",
-      "drawn": false
+      "drawn": true
     },
     {
       "id": "004",
       "name": "Charmander",
-      "drawn": false
+      "drawn": true
     }
   ]
 }
