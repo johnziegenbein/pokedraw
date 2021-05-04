@@ -1,13 +1,14 @@
 package pokedraw.project.service.storage;
 
 import org.junit.jupiter.api.Test;
+import pokedraw.project.service.ApplicationConfiguration;
 import pokedraw.project.service.data.Pokemon;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class JsonPokemonStorageTest {
 
-    private JsonPokemonStorage jsonPokemonStorage = new JsonPokemonStorage();
+    private JsonPokemonStorage jsonPokemonStorage = new JsonPokemonStorage(new ApplicationConfiguration("test"));
 
     @Test
     void get_contains3Pokemon() {

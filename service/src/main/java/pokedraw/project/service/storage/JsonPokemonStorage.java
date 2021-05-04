@@ -2,51 +2,69 @@ package pokedraw.project.service.storage;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import pokedraw.project.service.ApplicationConfiguration;
 import pokedraw.project.service.data.Pokemon;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Component
 public class JsonPokemonStorage implements PokemonStorage {
 
-    private static final String POKEMON_FILE = "pokemons.json";
+    private final ApplicationConfiguration applicationConfiguration;
+
+    @Autowired
+    public JsonPokemonStorage(ApplicationConfiguration applicationConfiguration) {
+        this.applicationConfiguration = applicationConfiguration;
+    }
 
     @Override
     public List<Pokemon> get() {
-        JSONArray pokemonArray = getPokemonJsonObject().getJSONArray("pokemons");
-        List<Pokemon> pokemonList = new ArrayList<>();
-        for (int i = 0; i < pokemonArray.length(); i++) {
-            Pokemon pokemon = new Pokemon(
-                    pokemonArray.getJSONObject(i).get("id").toString(),
-                    pokemonArray.getJSONObject(i).get("name").toString(),
-                    (boolean) pokemonArray.getJSONObject(i).get("drawn")
-            );
-            pokemonList.add(pokemon);
+        try {
+            JSONArray pokemonArray = getPokemonJsonObject().getJSONArray("pokemons");
+            List<Pokemon> pokemonList = new ArrayList<>();
+            for (int i = 0; i < pokemonArray.length(); i++) {
+                Pokemon pokemon = new Pokemon(
+                        pokemonArray.getJSONObject(i).get("id").toString(),
+                        pokemonArray.getJSONObject(i).get("name").toString(),
+                        (boolean) pokemonArray.getJSONObject(i).get("drawn")
+                );
+                pokemonList.add(pokemon);
+            }
+            return pokemonList;
+        } catch (IOException e) {
+            throw new IllegalStateException("Could not get from storage", e);
         }
-        return pokemonList;
     }
 
     @Override
     public Pokemon replacePokemon(Pokemon pokemon) {
-        JSONObject pokemonListJsonObject = getPokemonJsonObject();
-        JSONArray pokemonArray = pokemonListJsonObject.getJSONArray("pokemons");
-        int index = resolveDBIndex(pokemon);
+        try {
+            JSONObject pokemonListJsonObject = getPokemonJsonObject();
+            JSONArray pokemonArray = pokemonListJsonObject.getJSONArray("pokemons");
+            int index = resolveDBIndex(pokemon);
 
-        pokemonArray.getJSONObject(index)
-                .put("name", pokemon.getName())
-                .put("id", pokemon.getId())
-                .put("drawn", pokemon.isDrawn());
+            pokemonArray.getJSONObject(index)
+                    .put("name", pokemon.getName())
+                    .put("id", pokemon.getId())
+                    .put("drawn", pokemon.isDrawn());
 
-        try (FileWriter file = new FileWriter("src/main/resources/pokemons.json")) {
-            file.write(pokemonListJsonObject.toString(4));
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+            try (FileWriter file = new FileWriter(applicationConfiguration.getStorage())) {
+                file.write(pokemonListJsonObject.toString(4));
+                file.flush();
+            }
+
+            return pokemon;
         }
-
-        return pokemon;
+        catch (IOException e) {
+            throw new IllegalStateException("Could not replace pokemon", e);
+        }
     }
 
     /**
@@ -57,16 +75,8 @@ public class JsonPokemonStorage implements PokemonStorage {
         return Integer.parseInt(pokemon.getId()) - 1;
     }
 
-    private JSONObject getPokemonJsonObject() {
-        String pokemonString = getJsonString();
-        System.out.println(pokemonString);
-        return new JSONObject(pokemonString);
-    }
-
-    private String getJsonString() {
-        InputStream pokemonInputStream = getClass().getClassLoader().getResourceAsStream(POKEMON_FILE);
-        return new BufferedReader(new InputStreamReader(pokemonInputStream))
-                .lines()
-                .collect(Collectors.joining("\n"));
+    private JSONObject getPokemonJsonObject() throws IOException {
+        String content = new String(Files.readAllBytes(Paths.get(applicationConfiguration.getStorage())));
+        return new JSONObject(content);
     }
 }

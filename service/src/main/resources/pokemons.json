@@ -12,7 +12,7 @@
     {
         "name": "Venusaur",
         "id": "003",
-        "drawn": true
+        "drawn": false
     },
     {
         "name": "Charmander",
