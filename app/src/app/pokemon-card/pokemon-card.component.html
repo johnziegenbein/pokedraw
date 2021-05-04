@@ -1,4 +1,4 @@
-<mat-button-toggle [checked]="drawn">
+<mat-button-toggle [checked]="drawn" (change)=onValChange()>
   <mat-card class="pokemon-card">
     <mat-card-title>{{name}}</mat-card-title>
     <mat-card-subtitle>ID: {{id}}</mat-card-subtitle>

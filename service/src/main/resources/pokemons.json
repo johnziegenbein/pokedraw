@@ -2,7 +2,7 @@
     {
         "name": "Bulbasaur",
         "id": "001",
-        "drawn": false
+        "drawn": true
     },
     {
         "name": "Ivysaur",
@@ -17,6 +17,6 @@
     {
         "name": "Charmander",
         "id": "004",
-        "drawn": true
+        "drawn": false
     }
 ]}
