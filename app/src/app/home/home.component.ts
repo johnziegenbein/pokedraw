@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   onFilterChange(event: any) {
     this.filter = event;
     if (this.filter !== '') {
-      this.pokemonService.getByFilter(this.filter).subscribe((data: any[]) => {
+      this.pokemonService.findByFilter(this.filter).subscribe((data: any[]) => {
         console.log(data);
         this.pokemonData = data;
       });

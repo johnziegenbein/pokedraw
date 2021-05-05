@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subscriber} from "rxjs";
+import * as url from "url";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,12 @@ export class PokemonService {
     return this.http.get(this.SERVER_URL + this.POKEMON_PATH);
   }
 
-  public getByFilter(filter: string) {
-    return new Observable();
+  public findByFilter(filter: string) {
+    return this.http.get(this.SERVER_URL + '/pokemon/findByFilter', {
+      params: {
+        filter
+      }
+    });
   }
 
 

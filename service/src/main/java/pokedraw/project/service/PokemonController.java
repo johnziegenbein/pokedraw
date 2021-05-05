@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pokedraw.project.service.data.Pokemon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,6 +20,13 @@ public class PokemonController {
     @GetMapping("/pokemon")
     public List<Pokemon> getPokemon() {
         return pokemonService.getAll();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/pokemon/findByFilter")
+    public List<Pokemon> findByFilter(@RequestParam String filter) {
+        System.out.println(filter);
+        return new ArrayList<>();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
