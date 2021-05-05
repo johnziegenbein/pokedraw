@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable, Subscriber} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class PokemonService {
   public getAllPokemon() {
     return this.http.get(this.SERVER_URL + this.POKEMON_PATH);
   }
+
+  public getByFilter(filter: string) {
+    return new Observable();
+  }
+
 
   public replacePokemon(id: string, name: string, drawn: boolean) {
     const body = {

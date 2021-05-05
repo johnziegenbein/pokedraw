@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit {
 
   pokemonData;
 
+  filter: string;
+
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
@@ -19,4 +21,13 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  onFilterChange(event: any) {
+    this.filter = event;
+    if (this.filter !== '') {
+      this.pokemonService.getByFilter(this.filter).subscribe((data: any[]) => {
+        console.log(data);
+        this.pokemonData = data;
+      });
+    }
+  }
 }

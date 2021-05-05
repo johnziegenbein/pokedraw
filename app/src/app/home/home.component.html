@@ -1,3 +1,10 @@
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Filter</mat-label>
+    <input matInput type="text" [ngModel]="filter" (ngModelChange)="onFilterChange($event)">
+  </mat-form-field>
+</div>
+
 <div *ngFor="let map of pokemonData" class="inline-block">
   <app-pokemon-card [name]="map['name']" [id]="map['id']" [drawn]="map['drawn']"></app-pokemon-card>
 </div>
