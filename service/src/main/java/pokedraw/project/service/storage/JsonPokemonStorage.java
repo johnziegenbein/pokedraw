@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 public class JsonPokemonStorage implements PokemonStorage {
@@ -67,6 +68,45 @@ public class JsonPokemonStorage implements PokemonStorage {
         }
     }
 
+    @Override
+    public List<Pokemon> findByFilter(String filter) {
+        try {
+            JSONArray jsonArray = getPokemonJsonObject().getJSONArray("pokemons");
+            if (isNumeric(filter)) {
+                return filterById(filter, jsonArray);
+            }
+            return filterByName(filter, jsonArray);
+        } catch (IOException e) {
+            throw new IllegalStateException("Could not findByFilter", e);
+        }
+    }
+
+    private List<Pokemon> filterByName(String filter, JSONArray jsonArray) {
+        ArrayList<Pokemon> list = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject pokemonJSONObject = jsonArray.getJSONObject(i);
+            if (containsName(filter, pokemonJSONObject)) {
+                list.add(new Pokemon(
+                        pokemonJSONObject.getString("id"),
+                        pokemonJSONObject.getString("name"),
+                        pokemonJSONObject.getBoolean("drawn")
+                ));
+            }
+        }
+        return list;
+    }
+
+    private boolean containsName(String filter, JSONObject jsonObject) {
+        return jsonObject.getString("name").toLowerCase(Locale.ROOT)
+                .contains(filter.toLowerCase(Locale.ROOT));
+    }
+
+    private List<Pokemon> filterById(String filter, JSONArray jsonArray) {
+        ArrayList<Pokemon> list = new ArrayList<>();
+
+        return list;
+    }
+
     /**
      * Resolves DB index from pokemon by parsing id.
      * We need to negate with one since pokemon index starts with 1 and java index starts with 0.
@@ -78,5 +118,18 @@ public class JsonPokemonStorage implements PokemonStorage {
     private JSONObject getPokemonJsonObject() throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(applicationConfiguration.getStorage())));
         return new JSONObject(content);
+    }
+
+    public static boolean isNumeric(String str) {
+        if (str == null) {
+            return false;
+        }
+        int sz = str.length();
+        for (int i = 0; i < sz; i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -25,8 +25,7 @@ public class PokemonController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/pokemon/findByFilter")
     public List<Pokemon> findByFilter(@RequestParam String filter) {
-        System.out.println(filter);
-        return new ArrayList<>();
+        return pokemonService.findByFilter(filter);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

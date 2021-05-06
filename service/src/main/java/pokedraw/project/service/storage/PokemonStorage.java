@@ -8,4 +8,6 @@ public interface PokemonStorage {
     public List<Pokemon> get();
 
     public Pokemon replacePokemon(Pokemon pokemon);
+
+    List<Pokemon> findByFilter(String filter);
 }

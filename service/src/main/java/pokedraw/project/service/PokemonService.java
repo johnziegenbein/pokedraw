@@ -24,4 +24,8 @@ public class PokemonService {
     public Pokemon replacePokemon(Pokemon pokemon) {
         return pokemonStorage.replacePokemon(pokemon);
     }
+
+    public List<Pokemon> findByFilter(String filter) {
+        return pokemonStorage.findByFilter(filter);
+    }
 }
